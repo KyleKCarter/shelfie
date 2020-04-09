@@ -25,9 +25,17 @@ export default class Form extends Component {
         this.setState({ price: e.target.value });
     }
 
+    handleClickClear = () => {
+        this.setState({
+            image_url: "",
+            product: "",
+            price: 0,
+        })
+    }
+
     handleClickAdd = e => {
         const { image, product, price } = this.state;
-        e.preventDefault();
+        // e.preventDefault();
         axios.post("/api/product", {
             image,
             product,
@@ -41,13 +49,6 @@ export default class Form extends Component {
         })
     }
 
-    handleClickClear = () => {
-        this.setState({
-            image_url: "",
-            product: "",
-            price: 0
-        })
-    }
 
     render() {
         return (
@@ -57,14 +58,14 @@ export default class Form extends Component {
                     <Link className='links' to='/edit/:id'>Edit</Link>
                     <form>
                         <p>Image</p>
-                        <input placeholder='URL' onChange={this.handleChangeImage} />
+                        <input placeholder='URL' onChange={(e) => this.handleChangeImage(e)} />
                         <p>Product Name</p>
-                        <input onChange={this.handleChangeProduct} />
+                        <input onChange={(e) => this.handleChangeProduct(e)} />
                         <p>Price</p>
-                        <input onChange={this.handleChangePrice} />
+                        <input onChange={(e) => this.handleChangePrice(e)} />
                         <div>
-                            <button onClick={this.handleClickAdd}>Add</button>
-                            <button onClick={this.handleClickClear}>Cancle</button>
+                            <button onClick={() => this.handleClickAdd()}>Add</button>
+                            <button onClick={() => this.handleClickClear()}>Cancle</button>
                         </div>
                     </form>
                 </div>

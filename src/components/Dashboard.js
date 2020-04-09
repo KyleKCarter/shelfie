@@ -10,14 +10,14 @@ export default class Dashboard extends Component {
         this.state = {
             inventory: []
         }
-        this.getInventory = this.getInventory.bind(this);
+        this.componentDidMount = this.componentDidMount.bind(this);
     }
 
     componentDidMount() {
         this.getInventory()
     }
 
-    getInventory() {
+    getInventory = () => {
         axios.get('/api/inventory')
             .then(response => {
                 this.setState({ inventory: response.data })

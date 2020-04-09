@@ -10,6 +10,6 @@ export default (
     <Switch>
         <Route component={Dashboard} exact path='/' />
         <Route component={Form} path='/add' />
-        <Route component={Form} path='/edit/:id' />
+        <Route component={Update} path='/edit/:id' />
     </Switch>
 )

@@ -21,8 +21,8 @@ addProduct = (req, res) => {
 
 updateProduct = (req, res) => {
     const db = req.app.get('db');
-    const{ params } = req.params;
-    db.update_product([params.id]).then(product => {
+    const{ params, body } = req;
+    db.update_product([+params.id, body.image, body.product, body.price]).then(product => {
         res.sendStatus(200).json(product);
     }).catch(error => {
         console.log(error);
